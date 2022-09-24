@@ -135,6 +135,7 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/datePickerBtn"
         android:layout_width="70dp"
         android:layout_height="40dp"
         android:layout_marginTop="5dp"
@@ -144,4 +145,16 @@
         android:text="Date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lay_rb" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/timePickerBtn"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/date_btn_bg"
+        android:drawableLeft="@drawable/ic_timer"
+        android:text="Time"
+        app:layout_constraintBottom_toBottomOf="@+id/datePickerBtn"
+        app:layout_constraintEnd_toStartOf="@+id/datePickerBtn"
+        app:layout_constraintTop_toTopOf="@+id/datePickerBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

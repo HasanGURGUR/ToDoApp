@@ -3,6 +3,7 @@ package hasan.gurgur.todoapp.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -13,9 +14,8 @@ import hasan.gurgur.todoapp.databinding.ItemTaskBinding
 import hasan.gurgur.todoapp.db.TaskEntity
 
 
-
-class TaskAdapter : RecyclerView.Adapter<TaskAdapter.ViewHolder>(){
-    private lateinit var binding:ItemTaskBinding
+class TaskAdapter : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
+    private lateinit var binding: ItemTaskBinding
     private lateinit var context: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskAdapter.ViewHolder {
@@ -41,19 +41,24 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.ViewHolder>(){
             binding.apply {
                 //Set text
                 tvTitle.text = item.taskTitle
-                tvDesc.text= item.taskDesc
-              when(item.taskPriority){
-                  1->{
-                      itemCvBg.setBackgroundColor(ContextCompat.getColor(context,R.color.low))
-                  }
-                  2->{
-                      itemCvBg.setBackgroundColor(ContextCompat.getColor(context,R.color.medium))
-                  }
-                  3->{
-                      itemCvBg.setBackgroundColor(ContextCompat.getColor(context,R.color.high))
-                  }
-              }
+                tvDesc.text = item.taskDesc
+                tvDate.text = item.taskDate
+                when (item.taskPriority) {
+                    1 -> {
+                        itemCvBg.setBackgroundColor(ContextCompat.getColor(context, R.color.low))
+                    }
+                    2 -> {
+                        itemCvBg.setBackgroundColor(ContextCompat.getColor(context, R.color.medium))
+                    }
+                    3 -> {
+                        itemCvBg.setBackgroundColor(ContextCompat.getColor(context, R.color.high))
+                    }
+                }
 
+                if (!tvDate.text.isNullOrEmpty()) {
+                    tvDate.visibility = View.VISIBLE
+                    tvTime.visibility = View.VISIBLE
+                }
             }
         }
     }

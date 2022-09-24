@@ -50,4 +50,7 @@ dependencies {
     implementation("androidx.room:room-runtime:2.4.2")
     annotationProcessor("androidx.room:room-compiler:2.4.2")
     kapt("androidx.room:room-compiler:2.4.2")
+
+    //Notification
+    implementation "io.karn:notify:1.4.0"
 }
