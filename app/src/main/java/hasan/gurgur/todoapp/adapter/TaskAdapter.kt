@@ -43,6 +43,7 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
                 tvTitle.text = item.taskTitle
                 tvDesc.text = item.taskDesc
                 tvDate.text = item.taskDate
+                tvTime.text = item.taskTime
                 when (item.taskPriority) {
                     1 -> {
                         itemCvBg.setBackgroundColor(ContextCompat.getColor(context, R.color.low))

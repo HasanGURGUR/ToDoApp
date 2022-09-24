@@ -24,7 +24,7 @@
             android:layout_margin="15dp"
             android:background="@android:color/transparent"
             android:hint="Title"
-            android:maxLines="1"
+            android:maxLength="50"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -45,7 +45,7 @@
         <EditText
             android:id="@+id/etDesc"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="15dp"
             android:background="@android:color/transparent"
             android:gravity="top"
@@ -65,7 +65,7 @@
         android:src="@drawable/ic_baseline_save_24"
         android:text="Save"
         android:textColor="@color/white"
-        app:backgroundTint="#4CAF50"
+        app:backgroundTint="@color/radio_button_selected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/ageCard"
         app:tint="@color/white" />
@@ -142,11 +142,12 @@
         android:layout_marginRight="25dp"
         android:background="@drawable/date_btn_bg"
         android:drawableLeft="@drawable/ic_baseline_date_range_24"
+        android:drawableTint="@color/black"
         android:text="Date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lay_rb" />
 
-    <androidx.appcompat.widget.AppCompatButton
+  <!--  <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/timePickerBtn"
         android:layout_width="70dp"
         android:layout_height="40dp"
@@ -156,5 +157,5 @@
         android:text="Time"
         app:layout_constraintBottom_toBottomOf="@+id/datePickerBtn"
         app:layout_constraintEnd_toStartOf="@+id/datePickerBtn"
-        app:layout_constraintTop_toTopOf="@+id/datePickerBtn" />
+        app:layout_constraintTop_toTopOf="@+id/datePickerBtn" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

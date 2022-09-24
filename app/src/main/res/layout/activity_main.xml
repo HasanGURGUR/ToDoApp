@@ -4,11 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
+    android:background="@color/home_page_bg_color"
     tools:context=".ui.MainActivity">
 
+<include
+    android:id="@+id/MyToolbar"
+    layout="@layout/toolbar"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTaskList"
+        android:layout_marginTop="60dp"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="gone"
@@ -24,8 +30,7 @@
         android:gravity="center"
         android:text="There is no Task!"
         android:textColor="@color/black"
-        android:textSize="14sp"
-        />
+        android:textSize="14sp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnAddTask"
@@ -36,7 +41,7 @@
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_add_task"
-        app:backgroundTint="#4CAF50"
+        app:backgroundTint="@color/radio_button_selected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:tint="@color/white" />

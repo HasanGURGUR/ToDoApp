@@ -12,7 +12,11 @@
     <color name="radio_button_selected">#F47B0F</color>
     <color name="radio_button_normal">#BDBCBA</color>
     <color name="low">#63E879</color>
-    <color name="medium">#E8AA73</color>
+    <color name="medium">#DD781E</color>
     <color name="high">#F16C6C</color>
     <color name="grey">#DFDDDD</color>
+
+    <color name="status_bar_color">#F67504</color>
+    <color name="custum_tool_bar_color">#F68C2F</color>
+    <color name="home_page_bg_color">#ffffff</color>
 </resources>

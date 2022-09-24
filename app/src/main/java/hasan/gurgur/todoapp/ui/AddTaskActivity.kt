@@ -30,7 +30,7 @@ class AddTaskActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddTaskBinding
     var formatDate = SimpleDateFormat("dd MMMM YYYY", Locale.US)
     var date: String? = null
-    var time: String? = null
+    var times: String? = null
     lateinit var alarmService: AlarmService
 
     private val taskDB: AppDatabse by lazy {
@@ -61,7 +61,7 @@ class AddTaskActivity : AppCompatActivity() {
 
                 if (title.isNotEmpty() || desc.isNotEmpty()) {
 
-                    taskEntity = TaskEntity(0, title, desc, priority, date ?: "", time ?: "")
+                    taskEntity = TaskEntity(0, title, desc, priority, date ?: "", times ?: "")
                     taskDB.taskDao().insertTask(taskEntity)
                     finish()
                 } else {
@@ -98,11 +98,11 @@ class AddTaskActivity : AppCompatActivity() {
 
             }
 
-            timePickerBtn.setOnClickListener {
+         /*   timePickerBtn.setOnClickListener {
                 setAlarm {
                     alarmService.setRepetitiveAlarm(it)
                 }
-            }
+            }*/
 
 
         }
@@ -122,12 +122,16 @@ class AddTaskActivity : AppCompatActivity() {
                     this.set(Calendar.YEAR, year)
                     this.set(Calendar.MONTH, month)
                     this.set(Calendar.DAY_OF_MONTH, day)
+                    date = "$day/$month/$year"
+
 
                     TimePickerDialog(
                         this@AddTaskActivity, 0, { _, hour, min ->
                             this.set(Calendar.HOUR_OF_DAY, hour)
                             this.set(Calendar.MINUTE, min)
                             callback(this.timeInMillis)
+
+                            times = "$hour:$min"
 
                         },
                         this.get(Calendar.HOUR_OF_DAY),
