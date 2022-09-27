@@ -2,16 +2,24 @@ package hasan.gurgur.todoapp.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.view.get
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import hasan.gurgur.todoapp.R
 import hasan.gurgur.todoapp.databinding.ItemTaskBinding
 import hasan.gurgur.todoapp.db.TaskEntity
+import hasan.gurgur.todoapp.ui.UpdateTaskActivity
+import hasan.gurgur.todoapp.util.Constant.BUNDLE_NOTE_ID
 
 
 class TaskAdapter : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
@@ -44,6 +52,10 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
                 tvDesc.text = item.taskDesc
                 tvDate.text = item.taskDate
                 tvTime.text = item.taskTime
+
+
+
+
                 when (item.taskPriority) {
                     1 -> {
                         itemCvBg.setBackgroundColor(ContextCompat.getColor(context, R.color.low))
@@ -55,6 +67,30 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
                         itemCvBg.setBackgroundColor(ContextCompat.getColor(context, R.color.high))
                     }
                 }
+                root.setOnClickListener {
+
+
+
+                    val bottomSheetDialog = BottomSheetDialog(
+                        context, R.style.BottomSheetDialogTheme
+                    )
+                    val bottomSheetView = LayoutInflater.from(context).inflate(
+                        R.layout.layout_bottom_sheet,
+                        binding.root.findViewById(R.id.bottomSheet) as LinearLayout?
+                    )
+                    bottomSheetView.findViewById<TextView>(R.id.bottomSheetDialogTitle).text = item.taskTitle
+                    bottomSheetView.findViewById<View>(R.id.btn_edit).setOnClickListener {
+
+                        bottomSheetDialog.dismiss()
+                        val intent = Intent(context, UpdateTaskActivity::class.java)
+                        intent.putExtra(BUNDLE_NOTE_ID, item.taskId)
+                        context.startActivity(intent)
+                    }
+                    bottomSheetDialog.setContentView(bottomSheetView)
+                    bottomSheetDialog.show()
+
+
+                }
 
                 if (!tvDate.text.isNullOrEmpty()) {
                     tvDate.visibility = View.VISIBLE
@@ -62,6 +98,8 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
                 }
             }
         }
+
+
     }
 
     private val differCallback = object : DiffUtil.ItemCallback<TaskEntity>() {

@@ -3,17 +3,10 @@ package hasan.gurgur.todoapp.ui
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
-import android.widget.TimePicker
-import android.widget.Toast
-import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.room.Room
 import com.google.android.material.snackbar.Snackbar
-import hasan.gurgur.todoapp.R
 
 import hasan.gurgur.todoapp.databinding.ActivityAddTaskBinding
 import hasan.gurgur.todoapp.db.AppDatabse
@@ -59,7 +52,7 @@ class AddTaskActivity : AppCompatActivity() {
                 if (rbHigh.isChecked) priority = 3
 
 
-                if (title.isNotEmpty() || desc.isNotEmpty()) {
+                if (title.isNotEmpty() && desc.isNotEmpty()) {
 
                     taskEntity = TaskEntity(0, title, desc, priority, date ?: "", times ?: "")
                     taskDB.taskDao().insertTask(taskEntity)

@@ -12,6 +12,8 @@ interface TaskDao {
     @Query("SELECT * FROM $NOTE_TABLE WHERE taskId LIKE :id")
     fun getTask(id: Int): TaskEntity
 
+
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTask(taskEntity: TaskEntity)
 

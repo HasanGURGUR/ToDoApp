@@ -53,4 +53,7 @@ dependencies {
 
     //Notification
     implementation "io.karn:notify:1.4.0"
+
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
 }

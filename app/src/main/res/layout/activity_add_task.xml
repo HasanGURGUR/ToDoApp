@@ -25,7 +25,9 @@
             android:background="@android:color/transparent"
             android:hint="Title"
             android:maxLength="50"
+            android:inputType="textCapSentences"
             android:textColor="@color/black"
+            android:textColorHint="@color/tv_hint_color"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -50,7 +52,8 @@
             android:background="@android:color/transparent"
             android:gravity="top"
             android:hint="Description"
-            android:inputType="text"
+            android:textColorHint="@color/tv_hint_color"
+            android:inputType="textCapSentences"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -78,7 +81,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:text="Priority"
-        android:textColor="@color/black"
+        android:textColor="@color/tv_regular_color"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ageCard" />
@@ -140,6 +143,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="25dp"
+        android:textColor="@color/tv_hint_color"
         android:background="@drawable/date_btn_bg"
         android:drawableLeft="@drawable/ic_baseline_date_range_24"
         android:drawableTint="@color/black"

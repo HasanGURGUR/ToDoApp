@@ -16,7 +16,11 @@
     <color name="high">#F16C6C</color>
     <color name="grey">#DFDDDD</color>
 
-    <color name="status_bar_color">#F67504</color>
-    <color name="custum_tool_bar_color">#F68C2F</color>
+    <color name="status_bar_color">#222121</color>
+    <color name="custum_tool_bar_color">#8E8585</color>
     <color name="home_page_bg_color">#ffffff</color>
+    <color name="cv_bg">#FAF2F2</color>
+    <color name="tv_hint_color">#353333</color>
+    <color name="tv_regular_color">#000000</color>
+
 </resources>

@@ -7,6 +7,8 @@
     android:background="@color/custum_tool_bar_color"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:title="Home"
+    app:titleTextColor="@color/tv_regular_color"
+    android:elevation="10dp"
     app:titleMarginStart="30dp">
 
 </androidx.appcompat.widget.Toolbar>
