@@ -1,14 +1,21 @@
 package hasan.gurgur.todoapp.ui
 
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.room.Room
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import hasan.gurgur.todoapp.R
 import hasan.gurgur.todoapp.databinding.ActivityUpdateTaskBinding
 import hasan.gurgur.todoapp.db.AppDatabse
 import hasan.gurgur.todoapp.db.TaskEntity
+import hasan.gurgur.todoapp.extension.cameraCheckPermission
+import hasan.gurgur.todoapp.extension.galleryCheckPermission
+import hasan.gurgur.todoapp.extension.showDialog
 import hasan.gurgur.todoapp.util.Constant
 import hasan.gurgur.todoapp.util.Constant.BUNDLE_NOTE_ID
 
@@ -16,6 +23,7 @@ class UpdateTaskActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUpdateTaskBinding
     var date: String? = null
     var times: String? = null
+    var photo: ByteArray? = null
     private val taskDB: AppDatabse by lazy {
         Room.databaseBuilder(this, AppDatabse::class.java, Constant.NOTE_DATABASE)
             .allowMainThreadQueries()
@@ -27,6 +35,8 @@ class UpdateTaskActivity : AppCompatActivity() {
     private var taskOfId = 0
     private var defaultTitle = ""
     private var defaultDesc = ""
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUpdateTaskBinding.inflate(layoutInflater)
@@ -40,10 +50,32 @@ class UpdateTaskActivity : AppCompatActivity() {
         binding.apply {
             defaultTitle = taskDB.taskDao().getTask(taskOfId).taskTitle
             defaultDesc = taskDB.taskDao().getTask(taskOfId).taskDesc
+            photo = taskDB.taskDao().getTask(taskOfId).taskPhoto
 
             edtTitle.setText(defaultTitle)
             edtDesc.setText(defaultDesc)
 
+
+            val decodedImage =
+                photo?.let {
+                    BitmapFactory.decodeByteArray(
+                        photo,
+                        0,
+                        it.size
+                    )
+                }
+            updateTaskPhoto.setImageBitmap(decodedImage)
+
+            if (photo == null) {
+                updateCvTaskPhoto.visibility = View.GONE
+            }
+
+
+            if (photo == null) {
+                updateAddPhoto.visibility = View.VISIBLE
+            } else {
+                updateAddPhoto.visibility = View.GONE
+            }
 
             when (taskDB.taskDao().getTask(taskOfId).taskPriority) {
                 1 -> {
@@ -55,6 +87,26 @@ class UpdateTaskActivity : AppCompatActivity() {
                 3 -> {
                     rbHigh.isChecked = true
                 }
+            }
+
+            removePhotoBtn.setOnClickListener {
+                photo = null
+                updateCvTaskPhoto.visibility = View.GONE
+
+
+                if (photo == null) {
+                    updateAddPhoto.visibility = View.VISIBLE
+                } else {
+                    updateAddPhoto.visibility = View.GONE
+                }
+
+            }
+            binding.updateAddPhoto.setOnClickListener {
+                showDialog(camera = {
+                    cameraCheckPermission()
+                }, gallery = {
+                    galleryCheckPermission()
+                })
             }
 
 
@@ -71,7 +123,8 @@ class UpdateTaskActivity : AppCompatActivity() {
                     defaultDesc,
                     priority,
                     date ?: "",
-                    times ?: ""
+                    times ?: "",
+                    photo
                 )
                 taskDB.taskDao().deleteTask(taskEntity)
                 finish()
@@ -91,7 +144,7 @@ class UpdateTaskActivity : AppCompatActivity() {
                 if (title.isNotEmpty() || desc.isNotEmpty()) {
 
                     taskEntity =
-                        TaskEntity(taskOfId, title, desc, priority, date ?: "", times ?: "")
+                        TaskEntity(taskOfId, title, desc, priority, date ?: "", times ?: "", photo)
                     taskDB.taskDao().updateTask(taskEntity)
                     finish()
                 } else {

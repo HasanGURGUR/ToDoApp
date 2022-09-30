@@ -14,5 +14,7 @@ data class TaskEntity(
     @ColumnInfo(name = "task_desc") val taskDesc: String,
     @ColumnInfo(name = "task_priority") val taskPriority: Int,
     @ColumnInfo(name = "task_date") val taskDate: String,
-    @ColumnInfo(name = "task_time") val taskTime: String
+    @ColumnInfo(name = "task_time") val taskTime: String,
+    @ColumnInfo(name = "task_photo") val taskPhoto: ByteArray?
+
 )

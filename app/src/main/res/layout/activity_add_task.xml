@@ -24,8 +24,8 @@
             android:layout_margin="15dp"
             android:background="@android:color/transparent"
             android:hint="Title"
-            android:maxLength="50"
             android:inputType="textCapSentences"
+            android:maxLength="50"
             android:textColor="@color/black"
             android:textColorHint="@color/tv_hint_color"
             android:textSize="18sp"
@@ -52,9 +52,9 @@
             android:background="@android:color/transparent"
             android:gravity="top"
             android:hint="Description"
-            android:textColorHint="@color/tv_hint_color"
             android:inputType="textCapSentences"
             android:textColor="@color/black"
+            android:textColorHint="@color/tv_hint_color"
             android:textSize="16sp" />
 
     </androidx.cardview.widget.CardView>
@@ -73,6 +73,27 @@
         app:layout_constraintEnd_toEndOf="@+id/ageCard"
         app:tint="@color/white" />
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/photo_cv"
+        android:layout_width="60dp"
+        android:layout_marginLeft="10dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ageCard">
+
+
+        <ImageView
+            android:id="@+id/selected_task_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_add_photo"
+            />
+
+    </androidx.cardview.widget.CardView>
+
 
     <TextView
         android:id="@+id/tv_priority"
@@ -84,7 +105,7 @@
         android:textColor="@color/tv_regular_color"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ageCard" />
+        app:layout_constraintTop_toBottomOf="@+id/photo_cv" />
 
     <LinearLayout
         android:id="@+id/lay_rb"
@@ -141,25 +162,28 @@
         android:id="@+id/datePickerBtn"
         android:layout_width="70dp"
         android:layout_height="40dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="25dp"
-        android:textColor="@color/tv_hint_color"
         android:background="@drawable/date_btn_bg"
         android:drawableLeft="@drawable/ic_baseline_date_range_24"
         android:drawableTint="@color/black"
         android:text="Date"
+        android:textColor="@color/tv_hint_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lay_rb" />
+        app:layout_constraintTop_toBottomOf="@+id/ageCard" />
 
-  <!--  <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/timePickerBtn"
-        android:layout_width="70dp"
-        android:layout_height="40dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/date_btn_bg"
-        android:drawableLeft="@drawable/ic_timer"
-        android:text="Time"
-        app:layout_constraintBottom_toBottomOf="@+id/datePickerBtn"
-        app:layout_constraintEnd_toStartOf="@+id/datePickerBtn"
-        app:layout_constraintTop_toTopOf="@+id/datePickerBtn" />-->
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_add_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/button_bg"
+        android:text="Add Photo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lay_rb" />
 </androidx.constraintlayout.widget.ConstraintLayout>
