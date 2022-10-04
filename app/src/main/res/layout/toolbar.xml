@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/custom_toolbar"
-    android:background="@color/custum_tool_bar_color"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    app:title="Home"
-    app:titleTextColor="@color/tv_regular_color"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/toolbar_bg_color"
     android:elevation="10dp"
-    app:titleMarginStart="30dp">
+    android:theme="@style/MyThemeOverlay_Toolbar2"
+    app:navigationIcon="@drawable/ic_back_btn"
+    app:titleMarginStart="15dp"
+    app:titleTextColor="@color/toolbar_text_color">
 
 </androidx.appcompat.widget.Toolbar>

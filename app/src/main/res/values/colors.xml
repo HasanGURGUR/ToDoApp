@@ -9,18 +9,43 @@
     <color name="white">#FFFFFFFF</color>
 
 
-    <color name="radio_button_selected">#F47B0F</color>
+    <color name="radio_button_selected">#1EB7DD</color>
     <color name="radio_button_normal">#BDBCBA</color>
-    <color name="low">#63E879</color>
-    <color name="medium">#DD781E</color>
-    <color name="high">#F16C6C</color>
+    <color name="low">#47EF63</color>
+    <color name="medium">#1EB7DD</color>
+    <color name="high">#E65656</color>
     <color name="grey">#DFDDDD</color>
 
-    <color name="status_bar_color">#222121</color>
-    <color name="custum_tool_bar_color">#8E8585</color>
+    <color name="status_bar_color">#FFFFFF</color>
+
     <color name="home_page_bg_color">#ffffff</color>
     <color name="cv_bg">#FAF2F2</color>
     <color name="tv_hint_color">#353333</color>
     <color name="tv_regular_color">#000000</color>
+    //defaultPriorityColor
+    <color name="default_priority_color">#A8A4A4</color>
+
+    //ItemCardView
+    <color name="item_card_view_bg_color">#FFFFFF</color>
+
+    //Toolbar
+    <color name="toolbar_text_color">#FF9494</color>
+    <color name="toolbar_icon_color">#FF9494</color>
+    <color name="toolbar_bg_color">#FFFFFF</color>
+
+    //FloatButton
+    <color name="float_btn_icon_color">#FF9494</color>
+    <color name="float_btn_bg_color">#FFFFFF</color>
+
+    //BottomSheetDialogColors
+    <color name="bottom_sheet_title_color">#696767</color>
+    <color name="bottom_sheet_text_color">#696767</color>
+    <color name="bottom_sheet_divider_color">#ECE3E3</color>
+    <color name="bottom_sheet_button_color">#FF9494</color>
+    <color name="bottom_sheet_icon_color">#696767</color>
+    <color name="picker">#958D8D</color>
+
+    <color name="colorSystemNavBar">#ECECEC</color>
+
 
 </resources>

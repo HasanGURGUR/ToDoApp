@@ -12,7 +12,8 @@ interface TaskDao {
     @Query("SELECT * FROM $NOTE_TABLE WHERE taskId LIKE :id")
     fun getTask(id: Int): TaskEntity
 
-
+    @Query("SELECT * FROM $NOTE_TABLE WHERE task_title LIKE '%' || :title || '%' OR task_desc LIKE '%' || :title || '%' LIKE :title")
+    fun getAllTasksFromTitle(title : String): MutableList<TaskEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTask(taskEntity: TaskEntity)

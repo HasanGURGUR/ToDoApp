@@ -12,5 +12,13 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/status_bar_color</item>
         <!-- Customize your theme here. -->
+        <item name="android:navigationBarColor">@color/colorSystemNavBar</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="MyThemeOverlay_Toolbar2" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!-- This attributes is used by title -->
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/toolbar_text_color</item>
     </style>
 </resources>

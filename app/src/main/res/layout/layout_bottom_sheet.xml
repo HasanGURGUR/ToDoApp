@@ -1,53 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottomSheet"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="300dp"
     android:background="@drawable/bottom_sheet_bg"
-    android:paddingBottom="20dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="40dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="80dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        app:cardCornerRadius="4dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/picker" />
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/bottomSheetDialogTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="12dp"
         android:gravity="center"
         android:padding="10dp"
         android:text="Text"
-        android:textColor="@color/tv_regular_color"
+        android:textColor="@color/bottom_sheet_title_color"
         android:textSize="18sp"
         android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/edit_layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:paddingLeft="20dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit"
+            app:tint="@color/bottom_sheet_icon_color" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/bottom_sheet_text_color"
+            android:textSize="19sp" />
+
+
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/grey" />
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/bottom_sheet_divider_color" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_edit"
+    <LinearLayout
+        android:id="@+id/delete_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="40dp"
-        android:background="@drawable/button_bg"
-        android:text="Edit"
-        android:textAllCaps="false"
-        android:textColor="@color/tv_regular_color" />
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:paddingLeft="20dp"
+        android:orientation="horizontal">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_delete"
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete"
+            app:tint="@color/bottom_sheet_icon_color" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/bottom_sheet_text_color"
+            android:textSize="19sp" />
+
+    </LinearLayout>
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="40dp"
-        android:background="@drawable/button_bg"
-        android:text="Delete"
-        android:textAllCaps="false"
-        android:textColor="@color/tv_regular_color" />
+        android:layout_height="1dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/bottom_sheet_divider_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+    </LinearLayout>
 
 </LinearLayout>

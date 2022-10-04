@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="@color/home_page_bg_color"
     tools:context=".ui.MainActivity">
 
@@ -29,7 +28,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="There is no Task!"
-        android:textColor="@color/black"
+        android:textColor="@color/tv_regular_color"
         android:textSize="14sp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -41,9 +40,9 @@
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_add_task"
-        app:backgroundTint="@color/radio_button_selected"
+        app:backgroundTint="@color/float_btn_bg_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/white" />
+        app:tint="@color/float_btn_icon_color" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

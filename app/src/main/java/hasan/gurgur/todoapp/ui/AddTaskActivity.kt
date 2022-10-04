@@ -17,6 +17,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
@@ -35,7 +36,7 @@ import hasan.gurgur.todoapp.R
 import hasan.gurgur.todoapp.databinding.ActivityAddTaskBinding
 import hasan.gurgur.todoapp.db.AppDatabse
 import hasan.gurgur.todoapp.db.TaskEntity
-import hasan.gurgur.todoapp.extension.showDialog
+import hasan.gurgur.todoapp.extension.*
 import hasan.gurgur.todoapp.util.AlarmService
 import hasan.gurgur.todoapp.util.Constant.NOTE_DATABASE
 import java.io.ByteArrayOutputStream
@@ -48,11 +49,11 @@ import java.util.*
 class AddTaskActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddTaskBinding
-    var formatDate = SimpleDateFormat("dd MMMM YYYY", Locale.US)
     var date: String? = null
     var times: String? = null
-    private val CAMERA_REQUEST_CODE = 1
-    private val GALLERY_REQUEST_CODE = 2
+
+    private lateinit var myToolbar: androidx.appcompat.widget.Toolbar
+
     lateinit var alarmService: AlarmService
     var photo: ByteArray? = null
 
@@ -71,6 +72,9 @@ class AddTaskActivity : AppCompatActivity() {
         binding = ActivityAddTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        myToolbar = findViewById(R.id.MyToolbar)
+        myToolbar.title = "Add Task"
+        setSupportActionBar(myToolbar)
         binding.apply {
             btnSave.setOnClickListener {
                 val title = binding.etTitle.text.toString()
@@ -82,7 +86,7 @@ class AddTaskActivity : AppCompatActivity() {
                 if (rbHigh.isChecked) priority = 3
 
 
-                if (title.isNotEmpty() && desc.isNotEmpty()) {
+                if (title.isNotEmpty() || desc.isNotEmpty()) {
 
                     taskEntity =
                         TaskEntity(0, title, desc, priority, date ?: "", times ?: "", photo)
@@ -91,18 +95,18 @@ class AddTaskActivity : AppCompatActivity() {
                 } else {
                     Snackbar.make(
                         it,
-                        "Title and Describition cannot be Empty",
+                        "Title or Describition cannot be Empty",
                         Snackbar.LENGTH_LONG
                     ).show()
                 }
 
 
             }
-
+/*
             datePickerBtn.setOnClickListener {
                 setAlarm { timeInMillis -> alarmService.setExactAlarm(timeInMillis) }
 
-            }
+            }*/
 
 
             binding.selectedTaskPhoto.setOnClickListener {
@@ -122,72 +126,17 @@ class AddTaskActivity : AppCompatActivity() {
         }
     }
 
-   fun galleryCheckPermission() {
-        Dexter.withContext(this).withPermission(
-            android.Manifest.permission.READ_EXTERNAL_STORAGE
-        ).withListener(object : PermissionListener {
-            override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
-                gallery()
-            }
-
-            override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
-                Toast.makeText(
-                    this@AddTaskActivity, "You have denied the storage permission to selecet image",
-                    Toast.LENGTH_SHORT
-                ).show()
-                showRorationalDialogForPermission()
-            }
-
-            override fun onPermissionRationaleShouldBeShown(
-                p0: PermissionRequest?,
-                p1: PermissionToken?
-            ) {
-                showRorationalDialogForPermission()
-            }
-        }).onSameThread().check()
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val navigationIcon = myToolbar.navigationIcon
+        navigationIcon.apply {
+            finish()
+        }
+        return true
     }
 
-     fun gallery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, GALLERY_REQUEST_CODE)
-    }
-
-     fun cameraCheckPermission() {
-
-        Dexter.withContext(this)
-            .withPermissions(
-                android.Manifest.permission.READ_EXTERNAL_STORAGE,
-                android.Manifest.permission.CAMERA
-            ).withListener(
-
-                object : MultiplePermissionsListener {
-                    override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
-                        report?.let {
-                            if (report.areAllPermissionsGranted()) {
-                                camera()
-                            }
-                        }
-                    }
-
-                    override fun onPermissionRationaleShouldBeShown(
-                        p0: MutableList<PermissionRequest>?,
-                        p1: PermissionToken?
-                    ) {
-                        showRorationalDialogForPermission()
-                    }
-
-                }
-            ).onSameThread().check()
 
 
-    }
 
-     fun camera() {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(intent, CAMERA_REQUEST_CODE)
-
-    }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -225,27 +174,6 @@ class AddTaskActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) ImageDecoder.decodeBitmap(ImageDecoder.createSource(this.contentResolver, uri))
         else MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
 
-    fun showRorationalDialogForPermission() {
-
-        AlertDialog.Builder(this).setMessage(
-            "It looks like you have turned off permissions"
-                    + "required for this feature. It can be enable under App Settings!!"
-        )
-            .setPositiveButton("GO TO SETTINGS") { _, _ ->
-                try {
-                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                    val uri = Uri.fromParts("package", packageName, null)
-                    intent.data = uri
-                    startActivity(intent)
-
-
-                } catch (e: ActivityNotFoundException) {
-                    e.printStackTrace()
-                }
-            }.setNegativeButton("CANCEL") { dialog, _ ->
-                dialog.dismiss()
-            }.show()
-    }
 
     private fun setAlarm(callback: (Long) -> Unit) {
 

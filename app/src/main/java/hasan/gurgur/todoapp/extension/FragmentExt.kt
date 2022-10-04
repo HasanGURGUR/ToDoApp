@@ -60,7 +60,7 @@ fun Activity.cameraCheckPermission() {
 }
 
 fun Activity.camera() {
-    val CAMERA_REQUEST_CODE = 1
+
 
     val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
     startActivityForResult(intent, CAMERA_REQUEST_CODE)
@@ -68,7 +68,6 @@ fun Activity.camera() {
 }
 
 fun Activity.gallery() {
-    val GALLERY_REQUEST_CODE = 2
     val intent = Intent(Intent.ACTION_PICK)
     intent.type = "image/*"
     startActivityForResult(intent, GALLERY_REQUEST_CODE)
